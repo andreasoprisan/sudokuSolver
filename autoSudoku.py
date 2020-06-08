@@ -38,13 +38,14 @@ def process_templates(image, number, sudoku_array):
 
     position = np.where(output >= threshold)
     for point in zip(*position[::-1]): 
-        #cv.rectangle(image, point, (point[0] + w, point[1] + h), 0, 2)
+        cv.rectangle(image, point, (point[0] + w, point[1] + h), 0, 2)
         coords = (point[0] + w/2, point[1] + h/2)
-        
+        cv.imshow(f"Match {number}", image)
         x, y = get_matrix_place_from_coords(coords)
         
         sudoku_array[x, y] = number
-
+    cv.waitKey(0)
+    cv.destroyAllWindows()
     return sudoku_array
 
 

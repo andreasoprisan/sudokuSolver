@@ -18,7 +18,7 @@ script_dir = os.path.dirname(__file__)
 #SETTINGS
 processed_quiz = 0
 correct_quiz = 0
-total_quiz = 10001
+total_quiz = 100001
 calculate_ETA_after = 100
 progress_refresh_rate = 50
 filename = "sudoku.csv"

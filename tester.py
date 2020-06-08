@@ -1,6 +1,12 @@
 from helpers import singleSudokuSolver 
 
-input_string = '004300209005009001070060043006002087190007400050083000600000105003508690042910300'
+input_string = '400870090092000487078090100060059748980040000705680930009020810817900250000018079'
 array = singleSudokuSolver.array_input(input_string)
 
-singleSudokuSolver.line_exclusion_method(array)
+for i in range(5):
+    array = singleSudokuSolver.line_exclusion_method(array)
+print(array)
+
+for i in range(5):
+    array = singleSudokuSolver.check_naked_singles(array)
+print(array)
