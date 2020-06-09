@@ -7,7 +7,7 @@ array = singleSudokuSolver.array_input(input_string)
 
 
 start = time.time()
-chunksize = 1000
+chunksize = 10000
 for chunk in pd.read_csv("data/sudoku.csv", chunksize=chunksize, nrows=10000):
     
 
