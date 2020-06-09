@@ -2,10 +2,16 @@
 from PIL import Image
 from PIL import ImageGrab
 from helpers import singleSudokuSolver
+import os
 import numpy as np
 import cv2 as cv
 import keyboard
 import pyautogui
+
+#SETTINGS
+data_dir_name = "templates"
+script_dir = os.path.dirname(__file__)
+
 
 #FUNCTIONS
 
@@ -31,16 +37,17 @@ def get_quiz_screenshot():
 def process_templates(image, number, sudoku_array):
     image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     threshold = 0.85
-    template = cv.imread(f"template_{number}.png", 0)
+    template = cv.imread(f"{data_dir_name}/template_{number}.png", 0)
+    #cv.imshow("template", template)
     w, h = template.shape[::-1]
 
     output = cv.matchTemplate(image, template, cv.TM_CCOEFF_NORMED)
 
     position = np.where(output >= threshold)
     for point in zip(*position[::-1]): 
-        cv.rectangle(image, point, (point[0] + w, point[1] + h), 0, 2)
+        #cv.rectangle(image, point, (point[0] + w, point[1] + h), 0, 2)
         coords = (point[0] + w/2, point[1] + h/2)
-        cv.imshow(f"Match {number}", image)
+        #cv.imshow(f"Match {number}", image)
         x, y = get_matrix_place_from_coords(coords)
         
         sudoku_array[x, y] = number
